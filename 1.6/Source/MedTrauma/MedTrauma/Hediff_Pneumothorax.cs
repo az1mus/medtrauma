@@ -2,6 +2,7 @@
 using RimWorld;
 using Verse;
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,12 +10,11 @@ namespace MedTrauma
 {
     /// <summary>
     /// 气胸 Hediff - 带有进度条，影响肺效率
-    /// 效率 = 70% - (progress * 0.7%)，progress 范围 0-100
+    /// 肺效率 = 70% - (progress * 0.7%)，progress 范围 0-100
     /// </summary>
     public class Hediff_Pneumothorax : HediffWithComps
     {
-        // 获取当前进度 (0-100)
-        public float Progress => Severity;
+        public float Progress => Severity * 100;
 
         /// <summary>
         /// 计算当前效率 (70 - progress * 0.7)
@@ -24,15 +24,24 @@ namespace MedTrauma
             return Mathf.Max(0, 70f - Progress * 0.7f);
         }
 
+        public override string Label
+        {
+            get
+            {
+                string severityLabel = Severity > 0.7f ? "MedTrauma_PneumothoraxSevere".Translate() : "";
+                if (Severity > 0.7f)
+                {
+                    return $"{base.Label} ({severityLabel}) ({Progress:F1}%)";
+                }
+                return $"{base.Label} ({Progress:F1}%)";
+            }
+        }
+
         public override string TipStringExtra
         {
             get
             {
-                string tip = base.TipStringExtra;
-                float efficiency = CalculateEfficiency();
-                tip += $"\n{"MedTrauma_PneumothoraxEfficiency".Translate()}: {efficiency:F1}%";
-                tip += $"\n{"MedTrauma_PneumothoraxProgress".Translate()}: {Progress:F1}/100";
-                return tip;
+                return base.TipStringExtra;
             }
         }
     }
@@ -103,8 +112,18 @@ namespace MedTrauma
 
                 if (pneumothorax != null)
                 {
+                    // 检查是否有气胸针穿刺 hediff，如果有则不产生效率影响
+                    var pneumothoraxNeedle = diffSet.hediffs
+                        .FirstOrDefault(h => h.def.defName == "PneumothoraxNeedle" && h.Part == part);
+
+                    if (pneumothoraxNeedle != null)
+                    {
+                        // 存在气胸针穿刺，不对肺产生效率影响，直接返回
+                        return;
+                    }
+
                     // 计算效率：70 - progress * 0.7
-                    float progress = pneumothorax.Severity;
+                    float progress = pneumothorax.Severity * 100;
                     float efficiency = Mathf.Max(0, 70f - progress * 0.7f);
 
                     // 将效率转换为乘数
@@ -113,85 +132,134 @@ namespace MedTrauma
             }
         }
 
+
         /// <summary>
-        /// 补丁手术成功后的逻辑：减少器官 1 点耐久
+        /// 补丁 RecipeWorker.GetPartsToApplyOn 来为气胸针穿刺手术返回有气胸 Hediff 的肺部
+        /// 这样手术才会显示在医疗卡片中
         /// </summary>
-        [HarmonyPatch(typeof(HealthCardUtility), "DoSurgery")]
-        public static class HealthCardUtility_DoSurgery_Patch
+        [HarmonyPatch(typeof(RecipeWorker), "GetPartsToApplyOn")]
+        public static class RecipeWorker_GetPartsToApplyOn_Patch
         {
             [HarmonyPostfix]
-            public static void ApplyPneumothoraxNeedle(Pawn patient, RecipeDef recipe, BodyPartRecord part)
+            public static void AddPneumothoraxParts(RecipeDef recipe, Pawn pawn, ref IEnumerable<BodyPartRecord> __result)
             {
-                // 只处理气胸针穿刺手术
+                // 仅处理气胸针穿刺手术
                 if (recipe.defName != "PneumothoraxNeedleProcedure")
                     return;
 
-                // 减少器官 1 点耐久 - 通过增加 injury severity 实现
-                // 使用 Crush 伤害类型，severity 1 点约等于 1 点耐久
-                var injuryDef = DefDatabase<HediffDef>.GetNamed("Crush");
-                if (injuryDef == null)
+                if (pawn?.health?.hediffSet?.hediffs == null)
                     return;
 
-                var existingInjury = patient.health.hediffSet.hediffs
-                    .FirstOrDefault(h => h.Part == part && h.def == injuryDef);
+                // 查找所有有气胸 Hediff 的肺部
+                var pneumothoraxParts = new List<BodyPartRecord>();
+                foreach (var hediff in pawn.health.hediffSet.hediffs)
+                {
+                    if (hediff.def.defName == "Pneumothorax" &&
+                        hediff.Part != null &&
+                        hediff.Part.def.defName == "Lung" &&
+                        hediff.Visible)
+                    {
+                        pneumothoraxParts.Add(hediff.Part);
+                    }
+                }
 
-                if (existingInjury != null)
-                {
-                    existingInjury.Severity += 1f;
-                }
-                else
-                {
-                    var injury = HediffMaker.MakeHediff(injuryDef, patient, part);
-                    injury.Severity = 1f;
-                    patient.health.AddHediff(injury);
-                }
+                __result = pneumothoraxParts;
             }
         }
 
         /// <summary>
-        /// 控制手术显示条件 - 只有未损毁且存在气胸的单侧肺才显示
+        /// 补丁 RecipeWorker.AvailableOnNow 来为气胸针穿刺手术检查是否有气胸
         /// </summary>
-        [HarmonyPatch(typeof(HealthCardUtility), "GetSurgeryOptions")]
-        public static class HealthCardUtility_GetSurgeryOptions_Patch
+        [HarmonyPatch(typeof(RecipeWorker), "AvailableOnNow")]
+        public static class RecipeWorker_AvailableOnNow_Patch
         {
             [HarmonyPostfix]
-            public static void FilterPneumothoraxSurgery(Pawn pawn, ref IEnumerable<RecipeDef> __result)
+            public static void CheckPneumothoraxAvailability(RecipeWorker __instance, Thing thing, BodyPartRecord part, ref bool __result)
             {
-                var surgeryDef = DefDatabase<RecipeDef>.GetNamed("PneumothoraxNeedleProcedure");
-                if (surgeryDef == null)
+                // 仅处理气胸针穿刺手术
+                if (__instance.recipe.defName != "PneumothoraxNeedleProcedure")
                     return;
 
-                var result = __result.ToList();
-
-                // 检查是否有符合条件的肺（未损毁且存在气胸）
-                bool hasValidLung = false;
-                if (pawn.health?.hediffSet?.hediffs != null)
+                if (!(thing is Pawn pawn))
                 {
-                    // 遍历所有肺部位
-                    foreach (var lungPart in pawn.RaceProps.body.AllParts.Where(p => p.def.defName == "Lung"))
+                    __result = false;
+                    return;
+                }
+
+                if (part == null)
+                {
+                    __result = false;
+                    return;
+                }
+
+                // 检查指定部位是否有气胸
+                __result = pawn.health?.hediffSet?.hediffs?.Any(h =>
+                    h.def.defName == "Pneumothorax" &&
+                    h.Part == part &&
+                    h.Visible) == true;
+            }
+        }
+
+        /// <summary>
+        /// 补丁 RecipeWorker.AvailableReport 来为气胸针穿刺手术检查是否有气胸
+        /// AvailableReport 在 GetPartsToApplyOn 之前被调用，如果不通过检查会阻止手术显示
+        /// </summary>
+        [HarmonyPatch(typeof(RecipeWorker), "AvailableReport")]
+        public static class RecipeWorker_AvailableReport_Patch
+        {
+            [HarmonyPostfix]
+            public static void CheckPneumothoraxReport(RecipeWorker __instance, Thing thing, BodyPartRecord part, ref AcceptanceReport __result)
+            {
+                // 仅处理气胸针穿刺手术
+                if (__instance.recipe.defName != "PneumothoraxNeedleProcedure")
+                    return;
+
+                if (!(thing is Pawn pawn))
+                {
+                    __result = new AcceptanceReport("Not a pawn");
+                    return;
+                }
+
+                // 检查是否有气胸（不需要 part，因为 AvailableReport 可能在没有 part 的情况下调用）
+                bool hasPneumothorax = pawn.health?.hediffSet?.hediffs?.Any(h =>
+                    h.def.defName == "Pneumothorax" &&
+                    h.Visible) == true;
+
+                if (!hasPneumothorax)
+                {
+                    __result = new AcceptanceReport("No pneumothorax");
+                }
+                else
+                {
+                    __result = AcceptanceReport.WasAccepted;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// 补丁 PawnCapacityWorker_Breathing 来在气胸严重时对呼吸容量产生额外影响
+        /// </summary>
+        [HarmonyPatch(typeof(PawnCapacityWorker_Breathing), "CalculateCapacityLevel")]
+        public static class PawnCapacityWorker_Breathing_CalculateCapacityLevel_Patch
+        {
+            [HarmonyPostfix]
+            public static void ApplyPneumothoraxBreathingPenalty(HediffSet diffSet, ref float __result)
+            {
+                // 检查pawn是否有气胸，且严重度大于0.7
+                if (diffSet?.pawn?.health?.hediffSet?.hediffs != null)
+                {
+                    bool hasSeverePneumothorax = diffSet.pawn.health.hediffSet.hediffs
+                        .Any(h => h.def.defName == "Pneumothorax" && 
+                                  h.Severity > 0.7f &&
+                                  // 确保气胸不在被针穿刺治疗的状态
+                                  !diffSet.pawn.health.hediffSet.hediffs.Any(n => n.def.defName == "PneumothoraxNeedle" && n.Part == h.Part));
+
+                    if (hasSeverePneumothorax)
                     {
-                        // 检查该部位是否缺失
-                        if (pawn.health.hediffSet.PartIsMissing(lungPart))
-                            continue;
-
-                        // 检查该部位是否有气胸
-                        var hasPneumothorax = pawn.health.hediffSet.hediffs
-                            .Any(h => h.def.defName == "Pneumothorax" && h.Part == lungPart);
-
-                        if (hasPneumothorax)
-                        {
-                            hasValidLung = true;
-                            break;
-                        }
+                        // 对呼吸容量乘以0.6
+                        __result *= 0.6f;
                     }
                 }
-
-                if (!hasValidLung)
-                {
-                    result.RemoveAll(r => r.defName == "PneumothoraxNeedleProcedure");
-                }
-
-                __result = result;
             }
         }
     }

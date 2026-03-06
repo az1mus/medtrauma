@@ -5,9 +5,9 @@
     <defName>PneumothoraxNeedleProcedure</defName>
     <label>perform pneumothorax needle decompression</label>
     <description>Perform needle decompression on a collapsed lung to relieve pressure. This temporarily stops the pneumothorax from worsening.</description>
-    <workerClass>RecipeWorker</workerClass>
+    <workerClass>Recipe_AddHediff</workerClass>
     <jobString>Performing pneumothorax needle decompression.</jobString>
-    <workAmount>500</workAmount>
+    <workAmount>50</workAmount>
     <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
     <workSkill>Medicine</workSkill>
     <workSkillLearnFactor>8</workSkillLearnFactor>
@@ -23,7 +23,7 @@
     <isViolation>false</isViolation>
     <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
     <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
-    <ingredients>
+    <!-- <ingredients>
       <li>
         <filter>
           <categories>
@@ -37,7 +37,7 @@
       <categories>
         <li>Medicine</li>
       </categories>
-    </fixedIngredientFilter>
+    </fixedIngredientFilter> -->
     <addsHediff>PneumothoraxNeedle</addsHediff>
   </RecipeDef>
 </Defs>

@@ -3,12 +3,11 @@
   <!-- 气胸 -->
   <Pneumothorax.label>气胸</Pneumothorax.label>
   <Pneumothorax.description>由于空气在胸腔内积聚导致的肺塌陷。随着病情恶化，呼吸变得越来越困难，肺的效率也会降低。</Pneumothorax.description>
-  <Pneumothorax.initial.label>初期</Pneumothorax.initial.label>
   
   <!-- 气胸针穿刺 -->
   <PneumothoraxNeedle.label>气胸针穿刺</PneumothoraxNeedle.label>
   <PneumothoraxNeedle.description>插入针头以缓解塌陷肺部的压力。暂时防止气胸恶化。</PneumothoraxNeedle.description>
-  <PneumothoraxNeedle.treated.label>已治疗</PneumothoraxNeedle.treated.label>
+  <!-- <PneumothoraxNeedle.treated.label>已治疗</PneumothoraxNeedle.treated.label> -->
   
   <!-- 气胸针穿刺手术 -->
   <PneumothoraxNeedleProcedure.label>进行气胸针穿刺减压</PneumothoraxNeedleProcedure.label>
@@ -18,4 +17,5 @@
   <!-- Keyed 文本 -->
   <MedTrauma_PneumothoraxEfficiency>肺效率</MedTrauma_PneumothoraxEfficiency>
   <MedTrauma_PneumothoraxProgress>进度</MedTrauma_PneumothoraxProgress>
+  <!-- <MedTrauma_PneumothoraxSevere>严重</MedTrauma_PneumothoraxSevere> -->
 </LanguageData>

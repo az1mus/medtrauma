@@ -8,7 +8,7 @@
   <!-- Pneumothorax Needle -->
   <PneumothoraxNeedle.label>pneumothorax needle</PneumothoraxNeedle.label>
   <PneumothoraxNeedle.description>A needle inserted to relieve pressure from a collapsed lung. Temporarily prevents the pneumothorax from worsening.</PneumothoraxNeedle.description>
-  <PneumothoraxNeedle.treated.label>treated</PneumothoraxNeedle.treated.label>
+  <!-- <PneumothoraxNeedle.treated.label>treated</PneumothoraxNeedle.treated.label> -->
   
   <!-- Pneumothorax Needle Procedure -->
   <PneumothoraxNeedleProcedure.label>perform pneumothorax needle decompression</PneumothoraxNeedleProcedure.label>
@@ -18,4 +18,5 @@
   <!-- Keyed text -->
   <MedTrauma_PneumothoraxEfficiency>Lung efficiency</MedTrauma_PneumothoraxEfficiency>
   <MedTrauma_PneumothoraxProgress>Progress</MedTrauma_PneumothoraxProgress>
+  <MedTrauma_PneumothoraxSevere>severe</MedTrauma_PneumothoraxSevere>
 </LanguageData>
