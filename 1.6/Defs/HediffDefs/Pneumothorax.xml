@@ -5,14 +5,48 @@
     <defName>Pneumothorax</defName>
     <label>pneumothorax</label>
     <description>A collapsed lung caused by air accumulating in the chest cavity. As the condition worsens, breathing becomes increasingly difficult and the lung's efficiency decreases.</description>
-    <hediffClass>MedTrauma.Hediff_Pneumothorax</hediffClass>
+    <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(190, 80, 180)</defaultLabelColor>
-    <initialSeverity>0.01</initialSeverity>
+    <defaultInstallPart>Lung</defaultInstallPart>
+    <initialSeverity>0</initialSeverity>
     <minSeverity>0</minSeverity>
     <maxSeverity>1</maxSeverity>
+    <!-- <lethalSeverity>1</lethalSeverity> -->
+    <alwaysShowSeverity>true</alwaysShowSeverity>
     <stages>
       <li>
+        <label>minor</label>
         <becomeVisible>true</becomeVisible>
+        <partEfficiencyOffset>-0.15</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>minor</label>
+        <partEfficiencyOffset>-0.3</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.5</minSeverity>
+        <label>moderate</label>
+        <partEfficiencyOffset>-0.5</partEfficiencyOffset>
+        <lifeThreatening>true</lifeThreatening>
+      </li>
+      <li>
+        <minSeverity>0.75</minSeverity>
+        <label>severe</label>
+        <partEfficiencyOffset>-0.7</partEfficiencyOffset>
+        <lifeThreatening>true</lifeThreatening>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <label>extreme</label>
+        <partEfficiencyOffset>-1</partEfficiencyOffset>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <postFactor>0.6</postFactor>
+          </li>
+        </capMods>
       </li>
     </stages>
     <comps>
@@ -29,6 +63,7 @@
     <description>A needle inserted to relieve pressure from a collapsed lung. Temporarily prevents the pneumothorax from worsening.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(60, 180, 160)</defaultLabelColor>
+    <defaultInstallPart>Lung</defaultInstallPart>
     <initialSeverity>1</initialSeverity>
     <maxSeverity>1</maxSeverity>
     <stages>

@@ -40,4 +40,44 @@
     </fixedIngredientFilter> -->
     <addsHediff>PneumothoraxNeedle</addsHediff>
   </RecipeDef>
+
+  <!-- 气胸移除手术 -->
+  <RecipeDef>
+    <defName>PneumothoraxRemovalSurgery</defName>
+    <label>perform pneumothorax removal surgery</label>
+    <description>Perform surgery to completely remove the pneumothorax by draining accumulated air and sealing the lung. Requires anesthesia and consumes 1 medicine.</description>
+    <workerClass>MedTrauma.RecipeWorker_PneumothoraxRemoval</workerClass>
+    <jobString>Performing pneumothorax removal surgery.</jobString>
+    <workAmount>2500</workAmount>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>16</workSkillLearnFactor>
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <appliedOnFixedBodyParts>
+      <li>Lung</li>
+    </appliedOnFixedBodyParts>
+    <anesthetize>true</anesthetize>
+    <isViolation>false</isViolation>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+  </RecipeDef>
 </Defs>
