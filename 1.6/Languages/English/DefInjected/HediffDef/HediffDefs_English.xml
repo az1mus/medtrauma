@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Pneumothorax -->
+  <Pneumothorax.label>pneumothorax</Pneumothorax.label>
+  <Pneumothorax.description>A collapsed lung caused by air accumulating in the chest cavity. As the condition worsens, breathing becomes increasingly difficult and the lung's efficiency decreases.</Pneumothorax.description>
+  <Pneumothorax.initial.label>initial</Pneumothorax.initial.label>
+  
+  <!-- Pneumothorax Needle -->
+  <PneumothoraxNeedle.label>pneumothorax needle</PneumothoraxNeedle.label>
+  <PneumothoraxNeedle.description>A needle inserted to relieve pressure from a collapsed lung. Temporarily prevents the pneumothorax from worsening.</PneumothoraxNeedle.description>
+  <PneumothoraxNeedle.treated.label>treated</PneumothoraxNeedle.treated.label>
+  
+  <!-- Pneumothorax Needle Procedure -->
+  <PneumothoraxNeedleProcedure.label>perform pneumothorax needle decompression</PneumothoraxNeedleProcedure.label>
+  <PneumothoraxNeedleProcedure.description>Perform needle decompression on a collapsed lung to relieve pressure. This temporarily stops the pneumothorax from worsening.</PneumothoraxNeedleProcedure.description>
+  <PneumothoraxNeedleProcedure.jobString>Performing pneumothorax needle decompression.</PneumothoraxNeedleProcedure.jobString>
+  
+  <!-- Keyed text -->
+  <MedTrauma_PneumothoraxEfficiency>Lung efficiency</MedTrauma_PneumothoraxEfficiency>
+  <MedTrauma_PneumothoraxProgress>Progress</MedTrauma_PneumothoraxProgress>
+</LanguageData>

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "rimsage": {
+      "command": "bun", 
+      "args": ["run", "C:/Users/wuyue/workspace/RimSage"]
+    }
+  },
+  "$version": 3
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 气胸针穿刺手术 -->
+  <RecipeDef>
+    <defName>PneumothoraxNeedleProcedure</defName>
+    <label>perform pneumothorax needle decompression</label>
+    <description>Perform needle decompression on a collapsed lung to relieve pressure. This temporarily stops the pneumothorax from worsening.</description>
+    <workerClass>RecipeWorker</workerClass>
+    <jobString>Performing pneumothorax needle decompression.</jobString>
+    <workAmount>500</workAmount>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>8</workSkillLearnFactor>
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <appliedOnFixedBodyParts>
+      <li>Lung</li>
+    </appliedOnFixedBodyParts>
+    <anesthetize>false</anesthetize>
+    <isViolation>false</isViolation>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+    <addsHediff>PneumothoraxNeedle</addsHediff>
+  </RecipeDef>
+</Defs>

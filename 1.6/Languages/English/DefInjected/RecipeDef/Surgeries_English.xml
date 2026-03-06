@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Pneumothorax Needle Procedure -->
+  <PneumothoraxNeedleProcedure.label>perform pneumothorax needle decompression</PneumothoraxNeedleProcedure.label>
+  <PneumothoraxNeedleProcedure.description>Perform needle decompression on a collapsed lung to relieve pressure. This temporarily stops the pneumothorax from worsening.</PneumothoraxNeedleProcedure.description>
+  <PneumothoraxNeedleProcedure.jobString>Performing pneumothorax needle decompression.</PneumothoraxNeedleProcedure.jobString>
+</LanguageData>

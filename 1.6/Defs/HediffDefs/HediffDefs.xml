@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 气胸 - 类似失血的进度条 hediff -->
+  <HediffDef>
+    <defName>Pneumothorax</defName>
+    <label>pneumothorax</label>
+    <description>A collapsed lung caused by air accumulating in the chest cavity. As the condition worsens, breathing becomes increasingly difficult and the lung's efficiency decreases.</description>
+    <hediffClass>MedTrauma.Hediff_Pneumothorax</hediffClass>
+    <defaultLabelColor>(190, 80, 180)</defaultLabelColor>
+    <initialSeverity>0</initialSeverity>
+    <minSeverity>0</minSeverity>
+    <maxSeverity>100</maxSeverity>
+    <stages>
+      <li>
+        <label>initial</label>
+        <becomeVisible>true</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="MedTrauma.HediffComp_PneumothoraxProgress">
+        <severityPerDay>0.12</severityPerDay>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- 气胸针穿刺 - 临时 hediff，暂停气胸进度 -->
+  <HediffDef>
+    <defName>PneumothoraxNeedle</defName>
+    <label>pneumothorax needle</label>
+    <description>A needle inserted to relieve pressure from a collapsed lung. Temporarily prevents the pneumothorax from worsening.</description>
+    <hediffClass>HediffWithState</hediffClass>
+    <defaultLabelColor>(60, 180, 160)</defaultLabelColor>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>treated</label>
+        <becomeVisible>true</becomeVisible>
+        <painFactor>1.03</painFactor>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>30000</disappearsAfterTicks>
+        <showRemainingTimeForPlayer>true</showRemainingTimeForPlayer>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>
