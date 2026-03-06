@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 创伤伤害配置 -->
+  <MedTrauma.TraumaConfigDef>
+    <defName>DefaultTraumaConfig</defName>
+    
+    <!-- 概率配置 -->
+    <bluntToBoneChance>0.3</bluntToBoneChance>
+    <boneToOrganChance>0.6</boneToOrganChance>
+    
+    <!-- 伤害比例 -->
+    <stabDamageRatio>0.4</stabDamageRatio>
+    <bluntSecondaryDamageRatio>0.5</bluntSecondaryDamageRatio>
+    
+    <!-- 气胸配置 -->
+    <pneumothoraxInitialSeverity>0.05</pneumothoraxInitialSeverity>
+    <pneumothoraxMaxSeverityIncrease>0.1</pneumothoraxMaxSeverityIncrease>
+    
+    <!-- 骨头部位列表 -->
+    <boneParts>
+      <li>
+        <defName>Clavicle</defName>
+      </li>
+      <li>
+        <defName>Ribcage</defName>
+      </li>
+      <li>
+        <defName>Sternum</defName>
+      </li>
+      <li>
+        <defName>Skull</defName>
+      </li>
+      <li>
+        <defName>Pelvis</defName>
+      </li>
+      <li>
+        <defName>Spine</defName>
+      </li>
+      <li>
+        <defName>Jaw</defName>
+      </li>
+      <li>
+        <defName>Humerus</defName>
+      </li>
+      <li>
+        <defName>Radius</defName>
+      </li>
+      <li>
+        <defName>Femur</defName>
+      </li>
+      <li>
+        <defName>Tibia</defName>
+      </li>
+    </boneParts>
+    
+    <!-- 骨头→内脏映射 -->
+    <boneOrganMappings>
+      <li>
+        <boneDefName>Clavicle</boneDefName>
+        <organTargets>
+          <li>
+            <defName>Lung</defName>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <defName>Heart</defName>
+            <weight>0.5</weight>
+          </li>
+        </organTargets>
+      </li>
+      <li>
+        <boneDefName>Ribcage</boneDefName>
+        <organTargets>
+          <li>
+            <defName>Lung</defName>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <defName>Heart</defName>
+            <weight>0.5</weight>
+          </li>
+          <li>
+            <defName>Liver</defName>
+            <weight>0.7</weight>
+          </li>
+          <li>
+            <defName>Kidney</defName>
+            <weight>0.5</weight>
+          </li>
+        </organTargets>
+      </li>
+      <li>
+        <boneDefName>Sternum</boneDefName>
+        <organTargets>
+          <li>
+            <defName>Lung</defName>
+            <weight>1.0</weight>
+          </li>
+          <li>
+            <defName>Heart</defName>
+            <weight>0.5</weight>
+          </li>
+        </organTargets>
+      </li>
+      <li>
+        <boneDefName>Skull</boneDefName>
+        <organTargets>
+          <li>
+            <defName>Brain</defName>
+            <weight>1.0</weight>
+          </li>
+        </organTargets>
+      </li>
+    </boneOrganMappings>
+    
+    <!-- 气胸触发条件 -->
+    <pneumothoraxTriggers>
+      <li>
+        <partDefName>Sternum</partDefName>
+        <damageThreshold>5</damageThreshold>
+        <chance>1</chance>
+      </li>
+      <li>
+        <partDefName>Ribcage</partDefName>
+        <damageThreshold>8</damageThreshold>
+        <chance>0.4</chance>
+      </li>
+      <li>
+        <partDefName>Lung</partDefName>
+        <damageThreshold>5</damageThreshold>
+        <chance>1</chance>
+      </li>
+    </pneumothoraxTriggers>
+  </MedTrauma.TraumaConfigDef>
+</Defs>

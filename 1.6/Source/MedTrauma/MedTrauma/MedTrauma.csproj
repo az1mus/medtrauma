@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Hediff_Pneumothorax.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TraumaConfigDef.cs" />
     <Compile Include="TraumaDamage_Patch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
