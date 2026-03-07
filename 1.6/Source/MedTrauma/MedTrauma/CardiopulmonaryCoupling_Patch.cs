@@ -82,6 +82,7 @@ namespace MedTrauma
 
         /// <summary>
         /// 检查并应用低血氧导致的 Hediff
+        /// HediffComp 负责 severity 的增减和移除，这里只负责添加
         /// </summary>
         private static void CheckAndApplyHypoxiaHediffs(Pawn pawn, BleedingState state)
         {
@@ -99,18 +100,7 @@ namespace MedTrauma
                 // 获取目标器官部位 - 使用 defName 查找
                 var allParts = pawn.health.hediffSet.GetNotMissingParts();
                 var brainParts = allParts.Where(p => p.def.defName == "Brain").ToList();
-                // var kidneyParts = allParts.Where(p => p.def.defName.Contains("Kidney")).ToList();
-                // var liverParts = allParts.Where(p => p.def.defName.Contains("Liver")).ToList();
-
-                // 对每个目标部位应用或更新低血氧 Hediff
                 ApplyHypoxiaToParts(pawn, hypoxiaOrganDef, brainParts);
-                // ApplyHypoxiaToParts(pawn, hypoxiaOrganDef, kidneyParts);
-                // ApplyHypoxiaToParts(pawn, hypoxiaOrganDef, liverParts);
-            }
-            else if (hypoxiaOrganDef != null)
-            {
-                // bloodOxygen 恢复后，移除器官低血氧 Hediff
-                RemoveHypoxiaHediffs(pawn, hypoxiaOrganDef);
             }
 
             // ==================== 心室颤动（心脏） ====================
@@ -119,15 +109,8 @@ namespace MedTrauma
                 // 获取心脏部位
                 var heartParts = pawn.health.hediffSet.GetNotMissingParts()
                     .Where(p => p.def.defName.Contains("Heart")).ToList();
-
-                // 对心脏应用 VF Hediff
                 ApplyVFToParts(pawn, vfDef, heartParts);
             }
-            // else if (vfDef != null)
-            // {
-            //     // bloodOxygen 恢复后，移除 VF Hediff（如果 severity 很低）
-            //     RemoveVFHediffs(pawn, vfDef);
-            // }
         }
 
         /// <summary>
@@ -142,28 +125,8 @@ namespace MedTrauma
 
                 if (existingHypoxia == null)
                 {
-                    // 添加新的低血氧 Hediff（使用 XML 中的 initialSeverity）
                     var hypoxia = HediffMaker.MakeHediff(hypoxiaDef, pawn, part);
                     pawn.health.AddHediff(hypoxia, part);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 移除器官低血氧 Hediff
-        /// </summary>
-        private static void RemoveHypoxiaHediffs(Pawn pawn, HediffDef hypoxiaDef)
-        {
-            var hypoxiaHediffs = pawn.health.hediffSet.hediffs
-                .Where(h => h.def == hypoxiaDef)
-                .ToList();
-
-            foreach (var hypoxia in hypoxiaHediffs)
-            {
-                // 只有 severity 很低时才移除
-                if (hypoxia.Severity <= 0.01f)
-                {
-                    pawn.health.RemoveHediff(hypoxia);
                 }
             }
         }
@@ -180,31 +143,11 @@ namespace MedTrauma
 
                 if (existingVF == null)
                 {
-                    // 添加新的 VF Hediff（使用 XML 中的 initialSeverity）
                     var vf = HediffMaker.MakeHediff(vfDef, pawn, part);
                     pawn.health.AddHediff(vf, part);
                 }
             }
         }
-
-        // /// <summary>
-        // /// 移除 VF Hediff
-        // /// </summary>
-        // private static void RemoveVFHediffs(Pawn pawn, HediffDef vfDef)
-        // {
-        //     var vfHediffs = pawn.health.hediffSet.hediffs
-        //         .Where(h => h.def == vfDef)
-        //         .ToList();
-
-        //     foreach (var vf in vfHediffs)
-        //     {
-        //         // 只有 severity 很低时才移除
-        //         if (vf.Severity < 0.1f)
-        //         {
-        //             pawn.health.RemoveHediff(vf);
-        //         }
-        //     }
-        // }
 
         /// <summary>
         /// 判断是否是 HashIntervalTick

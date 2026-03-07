@@ -7,7 +7,7 @@
     <description>A chaotic, uncoordinated quivering of the heart's ventricles caused by severe hypoxia. Fatal at severity 1.0.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(255, 100, 50)</defaultLabelColor>
-    <initialSeverity>0.1</initialSeverity>
+    <initialSeverity>0.01</initialSeverity>
     <minSeverity>0</minSeverity>
     <maxSeverity>1</maxSeverity>
     <lethalSeverity>1.0</lethalSeverity>

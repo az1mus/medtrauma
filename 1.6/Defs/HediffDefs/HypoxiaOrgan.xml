@@ -8,7 +8,7 @@
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(150, 100, 255)</defaultLabelColor>
     <alwaysShowSeverity>true</alwaysShowSeverity>
-    <initialSeverity>0.1</initialSeverity>
+    <initialSeverity>0.01</initialSeverity>
     <minSeverity>0</minSeverity>
     <maxSeverity>1</maxSeverity>
     <lethalSeverity>1.0</lethalSeverity>
