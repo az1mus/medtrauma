@@ -58,7 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bleeding_Patch.cs" />
+    <Compile Include="Consciousness_Patch.cs" />
+    <Compile Include="HediffComp_HypoxiaOrgan.cs" />
     <Compile Include="Hediff_Pneumothorax.cs" />
+    <Compile Include="Hypoxia_Moving_Patch.cs" />
+    <Compile Include="HypoxiaOrgan_PartEfficiency_Patch.cs" />
+    <Compile Include="MedTraumaDefDatabase.cs" />
+    <Compile Include="PawnCapacityWorker_BloodOxygen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TraumaConfigDef.cs" />
     <Compile Include="TraumaDamage_Patch.cs" />

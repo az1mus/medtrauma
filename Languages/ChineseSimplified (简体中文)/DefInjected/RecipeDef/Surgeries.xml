@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <!-- EN: perform pneumothorax needle decompression -->
+  <PneumothoraxNeedleProcedure.label>进行气胸针刺减压</PneumothoraxNeedleProcedure.label>
+  <!-- EN: Perform needle decompression on a collapsed lung to relieve pressure. This temporarily stops the pneumothorax from worsening. -->
+  <PneumothoraxNeedleProcedure.description>对塌陷的肺部进行针刺减压以缓解压力。可暂时阻止气胸恶化。</PneumothoraxNeedleProcedure.description>
+  <!-- EN: Performing pneumothorax needle decompression. -->
+  <PneumothoraxNeedleProcedure.jobString>正在进行气胸针刺减压。</PneumothoraxNeedleProcedure.jobString>
+
+  <!-- EN: perform pneumothorax removal surgery -->
+  <PneumothoraxRemovalSurgery.label>进行气胸移除手术</PneumothoraxRemovalSurgery.label>
+  <!-- EN: Perform surgery to completely remove the pneumothorax by draining accumulated air and sealing the lung. Requires anesthesia and consumes 1 medicine. -->
+  <PneumothoraxRemovalSurgery.description>通过引流积气和封闭肺部来完全移除气胸的手术。需要麻醉并消耗 1 份药物。</PneumothoraxRemovalSurgery.description>
+  <!-- EN: Performing pneumothorax removal surgery. -->
+  <PneumothoraxRemovalSurgery.jobString>正在进行气胸移除手术。</PneumothoraxRemovalSurgery.jobString>
+
+</LanguageData>

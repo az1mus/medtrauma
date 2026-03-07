@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <!-- Pawn Capacity definitions will be added here -->
+  <!-- 血氧容量 - 由呼吸和血液循环影响，进而影响意识和器官效率 -->
+  <PawnCapacityDef>
+    <defName>BloodOxygen</defName>
+    <label>blood oxygen</label>
+    <lethalFlesh>true</lethalFlesh>
+    <listOrder>90</listOrder>
+    <showOnAnomalyEntities>false</showOnAnomalyEntities>
+    <showOnDrones>false</showOnDrones>
+    <showOnMechanoids>false</showOnMechanoids>
+    <workerClass>MedTrauma.PawnCapacityWorker_BloodOxygen</workerClass>
+  </PawnCapacityDef>
 </Defs>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <!-- EN: ventricular fibrillation -->
+  <VF.label>心室颤动</VF.label>
+  <!-- EN: A chaotic, uncoordinated quivering of the heart's ventricles. The heart cannot pump blood effectively, leading to immediate loss of cardiac function. Without immediate defibrillation, this condition is rapidly fatal. -->
+  <VF.description>心室发生混乱、不协调的颤动。心脏无法有效泵血，导致心功能立即丧失。如不立即除颤，此状况会迅速致命。</VF.description>
+  <!-- EN: ventricular fibrillation -->
+  <VF.stages.ventricular_fibrillation.label>心室颤动</VF.stages.ventricular_fibrillation.label>
+
+</LanguageData>

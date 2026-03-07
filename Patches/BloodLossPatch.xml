@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- 修改原版 BloodLoss：不再直接致死，改为影响 BloodPumping 而非 Consciousness -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/HediffDef[defName="BloodLoss"]/description</xpath>
+    <value>
+      <description>A reduction in the normal blood volume. Minor blood loss has relatively mild effects, but when blood loss becomes severe, blood pumping efficiency becomes impaired, which reduces blood oxygen levels and affects consciousness.
+\nBlood loss naturally recovers over time as the body slowly regenerates its blood supply.</description>
+    </value>
+  </Operation>
+
+  <!-- 添加 alwaysShowSeverity 以显示百分比 -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/HediffDef[defName="BloodLoss"]</xpath>
+    <value>
+      <alwaysShowSeverity>true</alwaysShowSeverity>
+      <minSeverity>0</minSeverity>
+      <maxSeverity>1</maxSeverity>
+    </value>
+  </Operation>
+
+  <!-- 移除原版致死性 -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/HediffDef[defName="BloodLoss"]/lethalSeverity</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/HediffDef[defName="BloodLoss"]/stages</xpath>
+    <value>
+      <stages>
+        <li>
+          <label>minor</label>
+          <becomeVisible>false</becomeVisible>
+        </li>
+        <li>
+          <minSeverity>0.2</minSeverity>
+          <label>minor</label>
+          <capMods>
+            <li>
+              <capacity>BloodPumping</capacity>
+              <postFactor>0.8</postFactor>
+            </li>
+          </capMods>
+        </li>
+        <li>
+          <minSeverity>0.4</minSeverity>
+          <label>moderate</label>
+          <capMods>
+            <li>
+              <capacity>BloodPumping</capacity>
+              <postFactor>0.6</postFactor>
+            </li>
+          </capMods>
+        </li>
+        <li>
+          <minSeverity>0.6</minSeverity>
+          <label>severe</label>
+          <capMods>
+            <li>
+              <capacity>BloodPumping</capacity>
+              <postFactor>0.4</postFactor>
+            </li>
+          </capMods>
+        </li>
+        <li>
+          <minSeverity>0.8</minSeverity>
+          <label>extreme</label>
+          <lifeThreatening>true</lifeThreatening>
+          <capMods>
+            <li>
+              <capacity>BloodPumping</capacity>
+              <postFactor>0.2</postFactor>
+            </li>
+          </capMods>
+        </li>
+        <li>
+          <minSeverity>1.0</minSeverity>
+          <label>critical</label>
+          <lifeThreatening>true</lifeThreatening>
+          <capMods>
+            <li>
+              <capacity>BloodPumping</capacity>
+              <postFactor>0.01</postFactor>
+            </li>
+          </capMods>
+        </li>
+      </stages>
+    </value>
+  </Operation>
+</Patch>

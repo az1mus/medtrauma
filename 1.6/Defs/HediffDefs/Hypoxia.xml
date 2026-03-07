@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 低血氧症 Hediff - 由 C# 代码动态影响 Moving 和器官效率 -->
+  <!-- <HediffDef>
+    <defName>BloodOxygenEffect</defName>
+    <label>hypoxia</label>
+    <description>Low blood oxygen levels impairing physical and mental performance.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(100, 150, 255)</defaultLabelColor>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <initialSeverity>0</initialSeverity>
+    <minSeverity>0</minSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>normal</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>mild</label>
+      </li>
+      <li>
+        <minSeverity>0.5</minSeverity>
+        <label>moderate</label>
+      </li>
+      <li>
+        <minSeverity>0.7</minSeverity>
+        <label>severe</label>
+        <lifeThreatening>true</lifeThreatening>
+      </li>
+      <li>
+        <minSeverity>0.9</minSeverity>
+        <label>critical</label>
+        <lifeThreatening>true</lifeThreatening>
+      </li>
+      <li>
+        <minSeverity>1.0</minSeverity>
+        <label>anoxic</label>
+        <lifeThreatening>true</lifeThreatening>
+      </li>
+    </stages>
+    <comps>
+      <li Class="MedTrauma.HediffCompProperties_BloodOxygenEffect">
+        <severityAdjustRate>0.005</severityAdjustRate>
+      </li>
+    </comps>
+  </HediffDef> -->
+
+  <!-- 器官低氧症 Hediff - 影响器官效率 -->
+  <!-- partEfficiencyOffset 已移除，由 Harmony 补丁 HypoxiaOrgan_PartEfficiency_Patch 使用系数乘法替代 -->
+  <HediffDef>
+    <defName>HypoxiaOrgan</defName>
+    <label>organ hypoxia</label>
+    <description>Low blood oxygen reducing organ efficiency. Efficiency is reduced by multiplicative factor based on severity.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(150, 100, 255)</defaultLabelColor>
+    <alwaysShowSeverity>false</alwaysShowSeverity>
+    <initialSeverity>0</initialSeverity>
+    <minSeverity>0</minSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>asymptomatic</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <label>mild</label>
+        <becomeVisible>true</becomeVisible>
+        <!-- factor = 0.9 at severity 0.3 -->
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>moderate</label>
+        <!-- factor = 0.75 at severity 0.5 -->
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>severe</label>
+        <!-- factor = 0.6 at severity 0.7 -->
+      </li>
+      <li>
+        <minSeverity>0.7</minSeverity>
+        <label>critical</label>
+        <!-- factor = 0.45 at severity 0.85 -->
+      </li>
+      <li>
+        <minSeverity>0.98</minSeverity>
+        <label>anoxic</label>
+        <!-- factor = 0.3 at severity 0.99 -->
+      </li>
+    </stages>
+    <comps>
+      <li Class="MedTrauma.HediffCompProperties_HypoxiaOrgan" />
+    </comps>
+  </HediffDef>
+</Defs>

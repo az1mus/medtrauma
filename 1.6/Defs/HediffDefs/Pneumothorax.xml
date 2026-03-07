@@ -12,7 +12,7 @@
     <minSeverity>0</minSeverity>
     <maxSeverity>1</maxSeverity>
     <!-- <lethalSeverity>1</lethalSeverity> -->
-    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <!-- <alwaysShowSeverity>true</alwaysShowSeverity> -->
     <stages>
       <li>
         <label>minor</label>

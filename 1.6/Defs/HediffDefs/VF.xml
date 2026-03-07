@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 心室颤动 Hediff - 心脏电生理紊乱导致的致命性心律失常 -->
+  <HediffDef>
+    <defName>VF</defName>
+    <label>ventricular fibrillation</label>
+    <description>A chaotic, uncoordinated quivering of the heart's ventricles. The heart cannot pump blood effectively, leading to immediate loss of cardiac function. Without immediate defibrillation, this condition is rapidly fatal.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(255, 100, 50)</defaultLabelColor>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <initialSeverity>1</initialSeverity>
+    <minSeverity>1</minSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>ventricular fibrillation</label>
+        <lifeThreatening>true</lifeThreatening>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>
