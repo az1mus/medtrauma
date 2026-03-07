@@ -61,6 +61,7 @@
     <Compile Include="Bleeding_Patch.cs" />
     <Compile Include="BleedingState.cs" />
     <Compile Include="CardiopulmonaryCoupling_Patch.cs" />
+    <Compile Include="Hediff_Defibrillation.cs" />
     <Compile Include="Hediff_HypoxiaOrgan.cs" />
     <Compile Include="Hediff_Pneumothorax.cs" />
     <Compile Include="MedTraumaDefDatabase.cs" />

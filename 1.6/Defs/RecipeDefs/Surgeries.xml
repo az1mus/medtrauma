@@ -80,4 +80,78 @@
       </categories>
     </fixedIngredientFilter>
   </RecipeDef>
+
+  <!-- 脉冲除颤手术 -->
+  <RecipeDef>
+    <defName>PulseDefibrillation</defName>
+    <label>perform pulse defibrillation</label>
+    <description>Apply electrical defibrillation to a heart in ventricular fibrillation. This resets the heart's rhythm and provides temporary cardiac enhancement.</description>
+    <workerClass>MedTrauma.RecipeWorker_PulseDefibrillation</workerClass>
+    <jobString>Performing pulse defibrillation.</jobString>
+    <workAmount>100</workAmount>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>8</workSkillLearnFactor>
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <appliedOnFixedBodyParts>
+      <li>Heart</li>
+    </appliedOnFixedBodyParts>
+    <anesthetize>false</anesthetize>
+    <isViolation>false</isViolation>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+  </RecipeDef>
+
+  <!-- 人工 AED 手术 -->
+  <RecipeDef>
+    <defName>ArtificialAED</defName>
+    <label>perform artificial AED</label>
+    <description>Apply artificial automated external defibrillation to a heart in ventricular fibrillation. This resets the heart's rhythm and provides temporary cardiac and breathing enhancement.</description>
+    <workerClass>MedTrauma.RecipeWorker_ArtificialAED</workerClass>
+    <jobString>Performing artificial AED.</jobString>
+    <workAmount>50</workAmount>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>8</workSkillLearnFactor>
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <appliedOnFixedBodyParts>
+      <li>Heart</li>
+    </appliedOnFixedBodyParts>
+    <anesthetize>false</anesthetize>
+    <isViolation>false</isViolation>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+  </RecipeDef>
+
+  <!-- 压缩氧气手术 -->
+  <RecipeDef>
+    <defName>CompressedOxygenProcedure</defName>
+    <label>administer compressed oxygen</label>
+    <description>Administer compressed pure oxygen to the lungs. This provides temporary breathing enhancement with pure oxygen absorption.</description>
+    <workerClass>Recipe_AddHediff</workerClass>
+    <jobString>Administering compressed oxygen.</jobString>
+    <workAmount>500</workAmount>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>8</workSkillLearnFactor>
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <targetsBodyPart>false</targetsBodyPart>
+    <anesthetize>false</anesthetize>
+    <isViolation>false</isViolation>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <addsHediff>CompressedOxygen</addsHediff>
+  </RecipeDef>
 </Defs>

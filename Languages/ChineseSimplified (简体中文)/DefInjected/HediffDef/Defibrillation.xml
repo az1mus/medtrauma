@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <!-- EN: artificial AED -->
+  <ArtificialAED.label>人工 AED</ArtificialAED.label>
+  <!-- EN: Recent artificial automated external defibrillation shock to the heart. Temporarily stabilizes cardiac rhythm and enhances pumping and breathing capacity. -->
+  <ArtificialAED.description>最近对心脏进行的人工自动体外除颤电击。可暂时稳定心脏节律并增强泵血和呼吸能力。</ArtificialAED.description>
+  <!-- EN: active -->
+  <ArtificialAED.stages.active.label>生效中</ArtificialAED.stages.active.label>
+
+  <!-- EN: defibrillation -->
+  <Defibrillation.label>除颤</Defibrillation.label>
+  <!-- EN: Recent electrical defibrillation shock to the heart. Temporarily stabilizes cardiac rhythm and enhances pumping capacity. -->
+  <Defibrillation.description>最近对心脏进行的电除颤电击。可暂时稳定心脏节律并增强泵血能力。</Defibrillation.description>
+  <!-- EN: active -->
+  <Defibrillation.stages.active.label>生效中</Defibrillation.stages.active.label>
+
+</LanguageData>

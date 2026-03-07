@@ -33,19 +33,22 @@ namespace MedTrauma
         private float prevLungFunction = 1.0f;
 
         /// <summary>
-        /// 模型参数 - Hill 系数 (心脏)
+        /// 模型参数 - Hill 系数
         /// </summary>
-        private const float HillCoefficientHeart = 2f;
+        private const float HillCoefficientHeart = 1.5f;
+        private const float HillCoefficientLung = 1.5f; 
 
         /// <summary>
-        /// 模型参数 - 心脏缺氧阈值
+        /// 模型参数 - 缺氧阈值
         /// </summary>
         private const float KHeart = 0.15f;
+        private const float KLung = 0.02f;
 
         /// <summary>
-        /// 模型参数 - 肺受损对心脏的反馈系数
+        /// 模型参数 - 受损反馈系数
         /// </summary>
-        private const float Alpha = 0.2f;
+        private const float Alpha = 0.2f; // 心脏对肺
+        private const float Beta = 0.3f; // 肺对心脏
 
         public BleedingState()
         {
@@ -71,10 +74,16 @@ namespace MedTrauma
             float currentHeartFunction = hypoxiaEffectHeart * lungBurdenEffect;
             currentHeartFunction = Mathf.Clamp(currentHeartFunction, 0.01f, 1.0f);
 
+            float hypoxiaEffectLung = CalculateHillFunction(bloodOxygen, HillCoefficientLung, KLung);
+            float heartBurdenEffect = 1.0f - Beta * (1.0f - prevHeartFunction);
+
+            float currentLungFunction = hypoxiaEffectLung * heartBurdenEffect;
+            currentLungFunction = Mathf.Clamp(currentLungFunction, 0.01f, 1.0f);
+
             // --- 计算当前氧供 ---
-            // O = B * H * L (L 直接使用输入的 lungEfficiency)
-            float currentO = currentB * Mathf.Min(currentHeartFunction * 1.2f, 1f) * lungEfficiency;
-            currentO = Mathf.Clamp(currentO, 0.0f, 1.0f);
+            // O = B * H * L 
+            float currentO = currentB * Mathf.Min(currentHeartFunction * 1.2f, 1f) * currentLungFunction;
+            currentO = Mathf.Clamp(currentO, 0.01f, 1.0f);
 
             // --- 更新状态 ---
             heartEfficiencyFactor = currentHeartFunction;
@@ -82,7 +91,7 @@ namespace MedTrauma
 
             // 更新"上一刻"状态，供下一次循环使用
             prevHeartFunction = currentHeartFunction;
-            prevLungFunction = lungEfficiency;
+            // prevLungFunction = lungEfficiency;
         }
 
         /// <summary>

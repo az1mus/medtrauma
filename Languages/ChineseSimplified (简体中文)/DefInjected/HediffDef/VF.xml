@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-
+  
   <!-- EN: ventricular fibrillation -->
   <VF.label>室颤</VF.label>
   <!-- EN: A chaotic, uncoordinated quivering of the heart's ventricles caused by severe hypoxia. Fatal at severity 1.0. -->
@@ -9,8 +9,8 @@
   <VF.stages.asymptomatic.label>无症状</VF.stages.asymptomatic.label>
   <!-- EN: dying -->
   <VF.stages.dying.label>濒死</VF.stages.dying.label>
-
+  
   <!-- UNUSED -->
   <VF.stages.ventricular_fibrillation.label>室颤</VF.stages.ventricular_fibrillation.label>
-
+  
 </LanguageData>

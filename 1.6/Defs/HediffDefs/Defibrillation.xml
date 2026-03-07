@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- 除颤 Hediff - 脉冲除颤手术后应用，持续 3 秒 -->
+  <HediffDef>
+    <defName>Defibrillation</defName>
+    <label>defibrillation</label>
+    <description>Recent electrical defibrillation shock to the heart. Temporarily stabilizes cardiac rhythm and enhances pumping capacity.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(100, 200, 255)</defaultLabelColor>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>active</label>
+        <capMods>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>0.5</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>600</disappearsAfterTicks>
+      </li>
+      <li Class="MedTrauma.HediffCompProperties_Defibrillation">
+        <vfMaxSeverity>0.01</vfMaxSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- 人工 AED 除颤 Hediff - 人工 AED 手术后应用，持续 1 秒，pumping +10%，breathing +15% -->
+  <HediffDef>
+    <defName>ArtificialAED</defName>
+    <label>artificial AED</label>
+    <description>Recent artificial automated external defibrillation shock to the heart. Temporarily stabilizes cardiac rhythm and enhances pumping and breathing capacity.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(150, 220, 255)</defaultLabelColor>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>active</label>
+        <capMods>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>0.10</offset>
+          </li>
+          <li>
+            <capacity>BloodOxygen</capacity>
+            <offset>0.35</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>300</disappearsAfterTicks>
+      </li>
+      <li Class="MedTrauma.HediffCompProperties_Defibrillation">
+        <vfMaxSeverity>0.01</vfMaxSeverity>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- 压缩氧气 Hediff - 压缩氧气手术后应用，持续 1 小时，breathing +0.5 -->
+  <HediffDef>
+    <defName>CompressedOxygen</defName>
+    <label>compressed oxygen</label>
+    <description>Compressed pure oxygen being administered to the lungs. Temporarily enhances breathing capacity with pure oxygen absorption.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(200, 255, 200)</defaultLabelColor>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>active</label>
+        <capMods>
+          <li>
+            <capacity>BloodOxygen</capacity>
+            <offset>0.5</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>3600</disappearsAfterTicks>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>
