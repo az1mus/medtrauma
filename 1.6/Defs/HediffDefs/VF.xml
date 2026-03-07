@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <!-- 心室颤动 Hediff - 心脏电生理紊乱导致的致命性心律失常 -->
+  <!-- 心室颤动 Hediff - 由 C# 代码在 bloodOxygen 低于阈值时应用于心脏 -->
   <HediffDef>
     <defName>VF</defName>
     <label>ventricular fibrillation</label>
-    <description>A chaotic, uncoordinated quivering of the heart's ventricles. The heart cannot pump blood effectively, leading to immediate loss of cardiac function. Without immediate defibrillation, this condition is rapidly fatal.</description>
+    <description>A chaotic, uncoordinated quivering of the heart's ventricles caused by severe hypoxia. Fatal at severity 1.0.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(255, 100, 50)</defaultLabelColor>
-    <alwaysShowSeverity>true</alwaysShowSeverity>
-    <initialSeverity>1</initialSeverity>
-    <minSeverity>1</minSeverity>
+    <initialSeverity>0.1</initialSeverity>
+    <minSeverity>0</minSeverity>
     <maxSeverity>1</maxSeverity>
+    <lethalSeverity>1.0</lethalSeverity>
     <stages>
       <li>
-        <label>ventricular fibrillation</label>
+        <label>asymptomatic</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.1</minSeverity>
+        <label>dying</label>
         <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
       </li>
     </stages>
+    <comps>
+      <li Class="MedTrauma.HediffCompProperties_VF">
+        <severityPerDay>24</severityPerDay>
+        <recoveryPerDay>24</recoveryPerDay>
+      </li>
+    </comps>
   </HediffDef>
 </Defs>

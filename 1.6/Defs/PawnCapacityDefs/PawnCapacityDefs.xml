@@ -9,6 +9,6 @@
     <showOnAnomalyEntities>false</showOnAnomalyEntities>
     <showOnDrones>false</showOnDrones>
     <showOnMechanoids>false</showOnMechanoids>
-    <workerClass>MedTrauma.PawnCapacityWorker_BloodOxygen</workerClass>
+    <!-- <workerClass>MedTrauma.PawnCapacityWorker_BloodOxygen</workerClass> -->
   </PawnCapacityDef>
 </Defs>

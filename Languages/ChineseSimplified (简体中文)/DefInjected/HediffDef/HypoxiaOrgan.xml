@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <!-- EN: hypoxia -->
+  <Hypoxia.label>缺氧</Hypoxia.label>
+  <!-- EN: Low blood oxygen reducing organ efficiency. -->
+  <Hypoxia.description>血氧水平过低导致器官效率降低。</Hypoxia.description>
+  <!-- EN: asymptomatic -->
+  <Hypoxia.stages.asymptomatic.label>无症状</Hypoxia.stages.asymptomatic.label>
+  <!-- EN: mild -->
+  <Hypoxia.stages.mild.label>轻度</Hypoxia.stages.mild.label>
+  <!-- EN: moderate -->
+  <Hypoxia.stages.moderate.label>中度</Hypoxia.stages.moderate.label>
+  <!-- EN: severe -->
+  <Hypoxia.stages.severe.label>重度</Hypoxia.stages.severe.label>
+  <!-- EN: critical -->
+  <Hypoxia.stages.critical.label>危重</Hypoxia.stages.critical.label>
+  <!-- EN: anoxic -->
+  <Hypoxia.stages.anoxic.label>缺氧</Hypoxia.stages.anoxic.label>
+
+</LanguageData>

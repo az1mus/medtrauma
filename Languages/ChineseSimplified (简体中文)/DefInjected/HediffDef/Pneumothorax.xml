@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-
+  
   <!-- EN: pneumothorax -->
   <Pneumothorax.label>气胸</Pneumothorax.label>
   <!-- EN: A collapsed lung caused by air accumulating in the chest cavity. As the condition worsens, breathing becomes increasingly difficult and the lung's efficiency decreases. -->
@@ -14,11 +14,11 @@
   <!-- EN: severe -->
   <Pneumothorax.stages.severe.label>重度</Pneumothorax.stages.severe.label>
   <!-- EN: extreme -->
-  <Pneumothorax.stages.extreme.label>极重度</Pneumothorax.stages.extreme.label>
-
+  <Pneumothorax.stages.extreme.label>极重</Pneumothorax.stages.extreme.label>
+  
   <!-- EN: pneumothorax needle -->
   <PneumothoraxNeedle.label>气胸针</PneumothoraxNeedle.label>
   <!-- EN: A needle inserted to relieve pressure from a collapsed lung. Temporarily prevents the pneumothorax from worsening. -->
   <PneumothoraxNeedle.description>用于缓解塌陷肺部压力的穿刺针。可暂时防止气胸恶化。</PneumothoraxNeedle.description>
-
+  
 </LanguageData>

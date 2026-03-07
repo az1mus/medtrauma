@@ -35,54 +35,54 @@
         <li>
           <minSeverity>0.2</minSeverity>
           <label>minor</label>
-          <capMods>
+          <!-- <capMods>
             <li>
               <capacity>BloodPumping</capacity>
               <postFactor>0.8</postFactor>
             </li>
-          </capMods>
+          </capMods> -->
         </li>
         <li>
           <minSeverity>0.4</minSeverity>
           <label>moderate</label>
-          <capMods>
+          <!-- <capMods>
             <li>
               <capacity>BloodPumping</capacity>
               <postFactor>0.6</postFactor>
             </li>
-          </capMods>
+          </capMods> -->
         </li>
         <li>
           <minSeverity>0.6</minSeverity>
           <label>severe</label>
-          <capMods>
+          <!-- <capMods>
             <li>
               <capacity>BloodPumping</capacity>
               <postFactor>0.4</postFactor>
             </li>
-          </capMods>
+          </capMods> -->
         </li>
         <li>
           <minSeverity>0.8</minSeverity>
           <label>extreme</label>
           <lifeThreatening>true</lifeThreatening>
-          <capMods>
+          <!-- <capMods>
             <li>
               <capacity>BloodPumping</capacity>
               <postFactor>0.2</postFactor>
             </li>
-          </capMods>
+          </capMods> -->
         </li>
         <li>
           <minSeverity>1.0</minSeverity>
           <label>critical</label>
           <lifeThreatening>true</lifeThreatening>
-          <capMods>
+          <!-- <capMods>
             <li>
               <capacity>BloodPumping</capacity>
               <postFactor>0.01</postFactor>
             </li>
-          </capMods>
+          </capMods> -->
         </li>
       </stages>
     </value>
